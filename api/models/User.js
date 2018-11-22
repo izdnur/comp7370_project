@@ -11,7 +11,6 @@ module.exports = {
 
     username:{
       type: "string", 
-      unique: true,
       required: true
     },
 
@@ -21,17 +20,30 @@ module.exports = {
 
     role:{
       type: "string",
-      enum:["admin", "user"], 
-      defaultsTo: "user"
+      enum:["admin", "customer"], 
+      defaultsTo: "customer"
     }, 
 
     trustRate:{
       type: "number", 
     },
+    totaldebt:{
+      type: "number", 
+    },
+    totalmoneylent:{
+      type: "number", 
+    },
+   userid:{
+      type: "string", 
+    },
 
     accountNumber:{
       type: "string"
     },
+    supervises: {
+      collection: 'Request',
+      via: 'worksFor'
+    }
 
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗

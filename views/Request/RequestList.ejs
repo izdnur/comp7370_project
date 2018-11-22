@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="row">
+        <% request.forEach( function(model) { %>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%= model.name %>
+                        <br><br>
+                        Borrower's id:
+                        <%= model.borrowerId %>
+                    </h5>
+                    <br>
+                    <label><strong> Description/Reason for borrowing money:</strong>
+                        <%= model.descr %></label>
+                    <br><br>
+                    <label><strong> Amount:</strong>
+                        <%= model.borrowingAmount %></label>
+                    <br><br>
+                    <label> <strong>Due Date: </strong>
+                        <%= model.dueDate %></label>
+                    <br>
+                    <br>
+                    <label> <strong>Credit Rating: </strong>
+                        <%= req.session.user.trustRate %></label>
+                    <br>
+                    <br>
+                    <form action="/Request/RequestList/<%=model.id%>" method='GET'>
+                        <button class="btn btn-success" type=button onClick="lend('<%=model.id%>')">Lend Money</button></form>
+                </div>
+            </div>
+        </div>
+        <% }); %>
+    </div>
+</div>
+
+<script>
+    async function lend(id) {
+
+        var r = confirm("Do you want to lend money?");
+        if (r == true) {
+            var response = await fetch("/Request/RequestList/" + id, {
+                // var response = await fetch("/Request/RequestList/", {
+                method: "POST",
+                credentials: 'same-origin',
+            });
+
+            if (response.redirected) {
+                window.location = response.url;
+            }
+            else
+                if (response.status == 200) {
+                    var data = await response.json();
+                    alert(data);
+                    location.reload(true);
+                }
+                else if (response.status == 401) {
+                    var data = await response.text();
+                    alert(data);
+                }
+                else {
+                    alert(response.statusText);
+                }
+        };
+    }
+</script>

@@ -1,0 +1,37 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <form action="/Request/Requestpage" method="POST">
+        <div class="container col-12">
+            <div class="form-group">
+                <label>Request Title:</label>
+                <input type="text" class="form-control" name="Request[name]" required>
+            </div>
+            <div class="form-group">
+                <label>Description/Reason for borrowing money:</label>
+                <input type="text" class="form-control" name="Request[descr]" required>
+            </div>
+            <div class="form-group">
+                <label>startDate:</label>
+                <input type="text" class="form-control" name="Request[startDate]" required>
+            </div>
+            <div class="form-group">
+                <label>dueDate:</label>
+                <input type="text" class="form-control" name="Request[dueDate]" required>
+            </div>
+            <div class="form-group">
+                <label>borrowingAmount:</label>
+                <input type="text" class="form-control" name="Request[borrowingAmount]" required>
+            </div>
+            <input type="hidden" class="form-control" name="Request[borrowerId]" value="<%=req.session.user.id%>" required>
+            <input type="hidden" class="form-control" name="Request[lenderId]" value=0 required>
+        </div>
+        <button type="submit" class="btn btn-success">Borrow</button>
+    </form>
+</body>
+
+</html>

@@ -24,9 +24,8 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'pages/homepage'
-  },
+  '/':'User.login',
+  
 
   /***************************************************************************
   *                                                                          *
@@ -39,7 +38,11 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
+//  'POST /Request/:id': 'RequestController.lendMoney',
+    'POST /Request/RequestList/:id':'RequestController.lendMoney',
 
+
+    // 'POST /Request/RequestPage/':'RequestController.lendMoney',
   //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
   //  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗
   //  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝

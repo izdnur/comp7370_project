@@ -8,25 +8,39 @@
 module.exports = {
 
   attributes: {
-
-    // borrower:{
-    //   type: "number"
-    // },
-
-    startDate:{
+      
+      startDate:{
       type: "string", 
-      columnType: "date"
-    },
-
-    dueDate:{
+      // columnType: "date"
+      },
+      
+      dueDate:{
       type:"string",
-      columnType: "date"
-    },
+      // columnType: "date"
+      },
+      
+      borrowingAmount:{
+      type: "string"
+      },
 
-    borrowingAmount:{
-      type: "number"
-    },
+      name:{
+        type:"string"
+      },
 
+      descr:{
+        type:"string"
+      },
+      borrowerId:{
+        type:"number"
+      },
+      lenderId:{
+        type:"number"
+      },
+
+      worksFor: {
+        collection: 'User',
+        via: 'supervises'
+      }
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
@@ -40,8 +54,7 @@ module.exports = {
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-
-  },
+    },
 
 };
 

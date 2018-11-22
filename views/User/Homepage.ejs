@@ -1,0 +1,30 @@
+<html>
+
+<head>
+</head>
+
+<body>
+    <div class="container">
+        <label>Welcome!
+            <%= req.session.user.username %> </label>
+        <br><br>
+        <ul class="list group float-left">
+            <li class="list-group-item"> <strong>Total Money Borrowed:  </strong>
+                <%= req.session.user.totaldebt %>
+            </li>
+            <li class="list-group-item"><strong>Total Money lent:  </strong>
+                <%=req.session.user.totalmoneylent%>
+            </li>
+        </ul>
+
+        <div class="row">
+            <form action="/Request/Requestpage" method="GET">
+                <button type="submit" class="btn btn-success">Borrow Money</button> </form>
+            <form action="/Request/RequestList" method="GET">
+                <button type="submit" class="btn btn-success">Lend Money</button></form>
+            <button type="submit" class="btn btn-success">Pay Back Loan</button>
+        </div>
+    </div>
+</body>
+
+</html>
