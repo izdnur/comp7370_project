@@ -4,27 +4,62 @@
 </head>
 
 <body>
-    <div class="container">
-        <label>Welcome!
-            <%= req.session.user.username %> </label>
-        <br><br>
-        <ul class="list group float-left">
-            <li class="list-group-item"> <strong>Total Money Borrowed:  </strong>
-                <%= req.session.user.totaldebt %>
-            </li>
-            <li class="list-group-item"><strong>Total Money lent:  </strong>
-                <%=req.session.user.totalmoneylent%>
-            </li>
-        </ul>
-
-        <div class="row">
-            <form action="/Request/Requestpage" method="GET">
-                <button type="submit" class="btn btn-success">Borrow Money</button> </form>
-            <form action="/Request/RequestList" method="GET">
-                <button type="submit" class="btn btn-success">Lend Money</button></form>
-            <button type="submit" class="btn btn-success">Pay Back Loan</button>
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+            <img src="http://localhost:1337/images/logo.png" style=" width:60px;height:60px;">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar navbar-dark bg-dark" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="/User/Homepage">Home<span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link " href="/Request/Requestpage">Request for Money</a>
+                <a class="nav-item nav-link" href="/Request/RequestList">Requests List</a>
+            </div>
         </div>
-    </div>
+
+        <form class="form-inline my-2 my-lg-0" action="/User/logout" method="GET" style="position: absolute; right: 20px">
+            <span class="nav justify-content-end navbar-light" style= "color: azure;">
+                Hi, <%=req.session.username %>!  (</span><button class="btn btn-light my-2 my-sm-0" style="float:right" type="submit">Logout</button>)
+            <span>
+            </span>
+        </form>
+    </nav>
+    <div class="container">
+        <br><br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col"><a style="color:black ; font-size: 20px"><strong>Total Money Borrowed: </strong>
+                            <%= user.totaldebt %></a></th>
+                    <th scope="col"><a style="color:black ; font-size: 20px"><strong>Total Money Lent: </strong>
+                            <%= user.totalmoneylent%></a></th>
+                    <th>
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <form action="/Request/Requestpage" method="GET">
+                            <button type="submit" class="btn btn-success">Borrow Money</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/Request/RequestList" method="GET">
+                            <button type="submit" class="btn btn-success">Lend Money</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/Request/RequestList" method="GET">
+                            <button type="submit" class="btn btn-success">Pay Back Loan</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 </body>
 
 </html>

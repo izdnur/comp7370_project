@@ -33,8 +33,8 @@ module.exports.bootstrap = async function(done) {
     ])
 
     await User.createEach([
-      { username: "sheetal", password: "123", role: "customer", trustRate: 90, accountNumber:"13234221",totaldebt: 300,totalmoneylent:0,userId:"3040" },
-      { username: "letty", password: "123", role: "customer", trustRate: 85, accountNumber:"191243221",totaldebt: 0,totalmoneylent:300,userId:"2040" },
+      { username: "sheetal", password: "123", role: "customer", trustRate: 90, accountNumber:"13234221",totaldebt: 0,totalmoneylent:0,userId:"3040" },
+      { username: "letty", password: "123", role: "customer", trustRate: 85, accountNumber:"191243221",totaldebt: 0,totalmoneylent:0,userId:"2040" },
     ])
 
     const purchasebooks = await Request.findOne({ name: "Purchase Books" });

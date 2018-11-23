@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
     <form action="/User/login" method="POST" onsubmit="submitForm(this);return false">
 
         <div class="form-group">
@@ -38,4 +38,82 @@
             alert(response.statusText);
         }
     };
-</script>
+</script> -->
+
+<html>
+
+<body>
+    <nav class="nav justify-content-end navbar-light" style="background-color: black;">
+            <img src="http://localhost:1337/images/logo.png" style="position: absolute; left: 20px ; width:60px;height:60px;">
+        <li class="nav-item">
+            <image src="http://img2.3png.com/a58716dc8997bd8d70b7a30e9541f460c4bb.png" style="width:20px;height:20px;">
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" style="color:white; font-size: 20px">56284388</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href=" " style="color:white; font-size: 20px">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active"></a>
+        </li>
+    </nav>
+    <br><br><br><br><br><br><br>
+    <div class="container">
+        <form action="/User/login" method="POST" onsubmit="submitForm(this);return false">
+            <div class=" row justify-content-center">
+                <div class="col-4">
+                    <h2 class="text-block__lead-paragraph" style="color:rgb(55, 8, 94) ">Sign in to your account</h2>
+                </div>
+            </div>
+            <br>
+            <div class=" row justify-content-center">
+                <div class="col-4">
+                    <label for="exampleInputEmail1"> username:</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="Enter email" name="username">
+                </div>
+            </div>
+            <br>
+            <div class=" row justify-content-center">
+                <div class="col-4">
+                    <label for="exampleInputPassword1">password</label>
+                    <input type="password" class="form-control" id="exampleInputpassword1" placeholder="password" name="password">
+                </div>
+            </div>
+            <br>
+            <div class=" row justify-content-center">
+                <div class="col-4">
+                    <button type="submit" class="btn btn-primary">Sign in</button>
+                </div>
+            </div>
+    </div>
+    </form>
+    </div>
+
+    <script>
+        async function submitForm(oFormElement) {
+            var response = await fetch(oFormElement.action, {
+                method: oFormElement.method,
+                credentials: 'same-origin',
+                body: new FormData(oFormElement),
+            });
+            console.log(response);
+            if (response.redirected) {
+                window.location = response.url;
+            } else if (response.status == 200) {
+                var data = await response.json();
+                alert(data);
+                location.reload(true);
+            } else if (response.status == 401) {
+                var data = await response.text();
+                alert(data);
+            } else {
+                alert(response.statusText);
+            }
+        };
+    </script>
+
+</body>
+
+</html>
