@@ -42,7 +42,7 @@ module.exports = {
         // await User.update(user.model.borrowerId).set({totaldebt : borrowedAmount});
 
         if (req.wantsJSON) {
-            return res.ok("Money is lent successfully!");
+            return res.ok("Payment is done successfully!");
         }
 
         else {
