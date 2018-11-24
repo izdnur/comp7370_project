@@ -19,34 +19,43 @@ module.exports = {
         await Request.create(req.body.Request);
         // await Request.update(req.params.id).set({ borrowerId: req.session.user.id });
 
-        return res.ok("Request Successfully!");
+        var model = await Request.find();
+
+        return res.view('Request/RequestList', { request: model });
     },
 
     RequestList: async function (req, res) {
         var model = await Request.find();
-        return res.view('Request/RequestList', { request: model });
+        return res.view('Request/RequestList', {request: model});
     },
 
-     lendMoney: async function (req, res) {
-     
+    lendMoney: async function (req, res) {
+
         uname = req.session.user.username;
         var model = await Request.findOne(req.params.id);
-        var borrowedAmount=model.borrowingAmount;
+        var borrowedAmount = model.borrowingAmount;
         console.log(model);
-        var bId = model.borrowerId; 
-        var models= await User.findOne({where:{userid:bId} });
+        var bId = model.borrowerId;
+        var models = await User.findOne({ where: { userid: bId } });
         console.log(models);
-        await User.update(req.session.user.id).set({totalmoneylent : borrowedAmount});
+        await User.update(req.session.user.id).set({ totalmoneylent: borrowedAmount });
         // await User.update(user.model.borrowerId).set({totaldebt : borrowedAmount});
 
-             if (req.wantsJSON) {
-                 return res.ok("Money is successfully lent ");
-             }
-         
-         else {
-             return res.ok("Transaction unsuccesful");
-         }
-     },
+        if (req.wantsJSON) {
+            return res.ok("Money is lent successfully!");
+        }
+
+        else {
+            return res.ok("Transaction unsuccesful");
+        }
+    },
+
+    lendingFinalPage: async function (req, res) {
+        
+        var model = await Request.findOne(req.params.id);
+        return res.view("Request/lendingFinalPage", {model: model});
+        
+    },
 
 };
 

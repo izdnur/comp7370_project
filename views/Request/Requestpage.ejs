@@ -1,63 +1,61 @@
-<html>
-
-<head>
-
-</head>
-
-<body>
-    <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
-            <img src="http://localhost:1337/images/logo.png" style="width:60px;height:60px;">
-        <a class="navbar-brand" href="#"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar navbar-dark bg-dark" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link " href="/User/Homepage">Home<span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link active" href="/Request/Requestpage">Request for Money</a>
-                <a class="nav-item nav-link" href="/Request/RequestList">Requests List</a>
-            </div>
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+    <img src="http://localhost:1337/images/logo.png" style="width:120px;">
+    <a class="navbar-brand" href="#"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar navbar-dark bg-dark" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/User/Homepage">Home</a>
+            <a class="nav-item nav-link active" href="/Request/Requestpage">New Borrowing Request</a>
+            <a class="nav-item nav-link" href="/Request/RequestList">All Lending Requests<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="/Lend/Lendrequests">My Borrowings</a>
+            <a class="nav-item nav-link" href="/Lend/LendList">My Lendings</a>
         </div>
-
-        <form class="form-inline my-2 my-lg-0" action="/User/logout" method="GET" style="position: absolute; right: 20px">
-            <span class="nav justify-content-end navbar-light" style="color: azure;">
-                Hi,
-                <%=req.session.username %>! (</span><button class="btn btn-light my-2 my-sm-0" style="float:right" type="submit">Logout</button>)
-            <span>
-            </span>
-        </form>
-    </nav>
-    <br>
-    <br>
-    <form action="/Request/Requestpage" method="POST">
-        <div class="container col-12">
-            <div class="form-group">
-                <label>Request Title:</label>
-                <input type="text" class="form-control" name="Request[name]" required>
-            </div>
-            <div class="form-group">
-                <label>Description/Reason for borrowing money:</label>
-                <input type="text" class="form-control" name="Request[descr]" required>
-            </div>
-            <div class="form-group">
-                <label>startDate:</label>
-                <input type="text" class="form-control" name="Request[startDate]" required>
-            </div>
-            <div class="form-group">
-                <label>dueDate:</label>
-                <input type="text" class="form-control" name="Request[dueDate]" required>
-            </div>
-            <div class="form-group">
-                <label>borrowingAmount:</label>
-                <input type="text" class="form-control" name="Request[borrowingAmount]" required>
-            </div>
-            <input type="hidden" class="form-control" name="Request[borrowerId]" value="<%=req.session.user.id%>"
-                required>
-            <input type="hidden" class="form-control" name="Request[lenderId]" value=0 required>
-        </div>
-        <button type="submit" class="btn btn-success">Borrow</button>
+    </div>
+    <form class="form-inline my-2 my-lg-0" action="/User/logout" method="GET" style="position: absolute; right: 20px">
+        <span class="nav justify-content-end navbar-light" style="color: azure; padding-right: 10px">
+            Hi,
+            <%=req.session.username %>!</span><button class="btn btn-light my-2 my-sm-0" style="float:right" type="submit">Logout</button>
     </form>
-</body>
-
-</html>
+</nav>
+<div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-12 col-sm-6">
+        <br>
+        <br>
+        <form action="/Request/Requestpage" method="POST">
+            <div class="container col-12">
+                <div class="form-group">
+                    <label>Request Title:</label>
+                    <input type="text" class="form-control" name="Request[name]" required>
+                </div>
+                <div class="form-group">
+                    <label>Description/Reason for borrowing money:</label>
+                    <input type="text" class="form-control" name="Request[descr]" required>
+                </div>
+                <div class="form-group">
+                    <label>Date for borrowing:</label>
+                    <input type="text" class="form-control" name="Request[startDate]" required>
+                </div>
+                <div class="form-group">
+                    <label>Date of repayment:</label>
+                    <input type="text" class="form-control" name="Request[dueDate]" required>
+                </div>
+                <div class="form-group">
+                    <label>Amount for borrowing:</label>
+                    <input type="text" class="form-control" name="Request[borrowingAmount]" required>
+                </div>
+                <input type="hidden" class="form-control" name="Request[borrowerId]" value="<%=req.session.user.id%>"
+                    required>
+                <input type="hidden" class="form-control" name="Request[lenderId]" value=0 required>
+                <div class="row">
+                    <div class="col-12 col-sm-4"></div>
+                    <div class="col-12 col-sm-4"><button type="submit" style="width: 100%" class="btn btn-success">Borrow</button></div>
+                    <div class="col-12 col-sm-4"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

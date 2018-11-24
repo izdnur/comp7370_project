@@ -39,7 +39,11 @@ module.exports.routes = {
   ***************************************************************************/
 
 //  'POST /Request/:id': 'RequestController.lendMoney',
+    'GET /Lend/Lendlist':'LendingController.Lendlist',
+    'GET /Lend/Lendrequests':'LendingController.Lendrequests',
+    'GET /Lend/LendindDetailsPage/:id':'LendingController.LendingDetailsPage',
     'POST /Request/RequestList/:id':'RequestController.lendMoney',
+    'GET /Request/lendingFinalPage/:id':'RequestController.lendingFinalPage',
 
 
     // 'POST /Request/RequestPage/':'RequestController.lendMoney',

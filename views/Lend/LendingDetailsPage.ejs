@@ -9,8 +9,8 @@
         <div class="navbar-nav">
             <a class="nav-item nav-link " href="/User/Homepage">Home</a>
             <a class="nav-item nav-link" href="/Request/Requestpage">New Borrowing Request</a>
-            <a class="nav-item nav-link active" href="/Request/RequestList">All Lending Requests<span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="/Lend/Lendrequests">My Borrowings</a>
+            <a class="nav-item nav-link" href="/Request/RequestList">All Lending Requests</a>
+            <a class="nav-item nav-link active" href="/Lend/Lendrequests">My Borrowings<span class="sr-only">(current)</span></a>
             <a class="nav-item nav-link" href="/Lend/LendList">My Lendings</a>
         </div>
     </div>
@@ -21,60 +21,55 @@
             <%=req.session.username %>!</span><button class="btn btn-light my-2 my-sm-0" style="float:right" type="submit">Logout</button>
     </form>
 </nav>
+
 <br>
 <br>
-<div class="container">
-    <div class="row">
+<div class="row">
+    <div class="col-2 col-sm-2"></div>
+    <div class="col-8 col-sm-8">
         <table class="table">
             <tr>
                 <th>
-                    Reason
+                    Name:
                 </th>
-                <th>
-                    Amount
-                </th>
-                <th>
-                    Date Money is Needed
-                </th>
-                <th>
-                    Date of Repayment
-                </th>
-                <th>
-                    Trust Rate
-                </th>
-                <th>
-                    Amount You Lend
-                </th>
-                <th>
-                </th>
+                <td>
+                    <%=model.name%>
+                </td>
             </tr>
-            <% request.forEach( function(model) { %>
+            <tr>
+                <th>
+                    Reason:
+                </th>
+                <td>
+                    <%=model.descr%>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Amount:
+                </th>
+                <td>
+                    <%=model.borrowingAmount%>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Start Date:
+                </th>
+                <td>
+                    <%=model.startDate%>
+                </td>
+            </tr>
+
             <tr>
                 <td>
-                    <%= model.descr %>
+                    <button class="btn btn-info" style="width: 170px; position: relative; right: 10px;">UPDATE</button>
                 </td>
                 <td>
-                    <%= model.borrowingAmount %>
-                </td>
-                <td>
-                    <%= model.startDate %>
-                </td>
-                <td>
-                    <%= model.dueDate %>
-                </td>
-                <td>
-                    <%= req.session.user.trustRate %>
-                </td>
-                <td>
-                    <input type="number" class="form-control" placeholder="Amount...">
-                </td>
-                <td>
-                    <form action="/Request/lendingFinalPage/<%=model.id%>" method='GET'>
-                        <button class="btn btn-success" type="submit">Lend Money</button>
-                    </form>
+                    <button class="btn btn-danger" style="width: 170px">DELETE</button>
                 </td>
             </tr>
-            <% }); %>
         </table>
     </div>
+    <div class="col-2 col-sm-2"></div>
 </div>

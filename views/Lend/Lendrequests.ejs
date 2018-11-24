@@ -1,3 +1,79 @@
-<form >
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+    <img src="http://localhost:1337/images/logo.png" style=" width:120px;">
+    <a class="navbar-brand" href="#"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar navbar-dark bg-dark" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link " href="/User/Homepage">Home</a>
+            <a class="nav-item nav-link" href="/Request/Requestpage">New Borrowing Request</a>
+            <a class="nav-item nav-link" href="/Request/RequestList">All Lending Requests</a>
+            <a class="nav-item nav-link active" href="/Lend/Lendrequests">My Borrowings<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="/Lend/LendList">My Lendings</a>
+        </div>
+    </div>
 
-</form>
+    <form class="form-inline my-2 my-lg-0" action="/User/logout" method="GET" style="position: absolute; right: 20px">
+        <span class="nav justify-content-end navbar-light" style="color: azure; padding-right: 10px">
+            Hi,
+            <%=req.session.username %>!</span><button class="btn btn-light my-2 my-sm-0" style="float:right" type="submit">Logout</button>
+    </form>
+</nav>
+
+
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <table class="table">
+            <tr>
+                <th>
+                    Reason
+                </th>
+                <th>
+                    Amount You Borrowed
+                </th>
+                <th>
+                    Date of Repayment
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Amount You Pay
+                </th>
+                <th>
+                </th>
+            </tr>
+            <% request.forEach( function(model) { %>
+            <tr>
+                <td>
+                    <form action="/Lend/LendindDetailsPage/<%=model.id%>" method="GET">
+                        <button class="btn btn-link" type="submit">
+                            <%= model.descr %></button>
+                    </form>
+                </td>
+                <td>
+                    <%= model.borrowingAmount %>
+                </td>
+                <td>
+                    <%= model.dueDate %>
+                </td>
+                <td style="font: bold; color: brown">
+                    YOU DID NOT PAY IN TIME! YOUR TRUSTRATE WILL BE REDUCED BY 15!
+                </td>
+                <td>
+                    <input type="number" class="form-control" placeholder="Amount...    ">
+                </td>
+                <td>
+                    <form action="/Request/lendingFinalPage/<%=model.id%>" method='GET'>
+                        <button class="btn btn-success" type="submit">Pay Debt</button>
+                    </form>
+                </td>
+            </tr>
+            <% }); %>
+        </table>
+    </div>
+</div>

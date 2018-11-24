@@ -9,9 +9,9 @@
         <div class="navbar-nav">
             <a class="nav-item nav-link " href="/User/Homepage">Home</a>
             <a class="nav-item nav-link" href="/Request/Requestpage">New Borrowing Request</a>
-            <a class="nav-item nav-link active" href="/Request/RequestList">All Lending Requests<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="/Request/RequestList">All Lending Requests</a>
             <a class="nav-item nav-link" href="/Lend/Lendrequests">My Borrowings</a>
-            <a class="nav-item nav-link" href="/Lend/LendList">My Lendings</a>
+            <a class="nav-item nav-link active" href="/Lend/LendList">My Lendings<span class="sr-only">(current)</span></a>
         </div>
     </div>
 
@@ -21,6 +21,8 @@
             <%=req.session.username %>!</span><button class="btn btn-light my-2 my-sm-0" style="float:right" type="submit">Logout</button>
     </form>
 </nav>
+
+
 <br>
 <br>
 <div class="container">
@@ -31,21 +33,13 @@
                     Reason
                 </th>
                 <th>
-                    Amount
-                </th>
-                <th>
-                    Date Money is Needed
+                    Amount You Lent
                 </th>
                 <th>
                     Date of Repayment
                 </th>
                 <th>
-                    Trust Rate
-                </th>
-                <th>
-                    Amount You Lend
-                </th>
-                <th>
+                    Status
                 </th>
             </tr>
             <% request.forEach( function(model) { %>
@@ -57,21 +51,10 @@
                     <%= model.borrowingAmount %>
                 </td>
                 <td>
-                    <%= model.startDate %>
-                </td>
-                <td>
                     <%= model.dueDate %>
                 </td>
-                <td>
-                    <%= req.session.user.trustRate %>
-                </td>
-                <td>
-                    <input type="number" class="form-control" placeholder="Amount...">
-                </td>
-                <td>
-                    <form action="/Request/lendingFinalPage/<%=model.id%>" method='GET'>
-                        <button class="btn btn-success" type="submit">Lend Money</button>
-                    </form>
+                <td style="font: bold; color: chartreuse">
+                    WAITING FOR REPAYMENT...
                 </td>
             </tr>
             <% }); %>
